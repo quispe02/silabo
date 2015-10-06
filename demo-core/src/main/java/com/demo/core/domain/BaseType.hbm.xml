@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.demo.core.domain.BaseType" table="basetype"
+		mutable="false">
+		<comment />
+		<id name="typeCode" type="string">
+			<column name="typeCode" length="15" />
+			<generator class="assigned" />
+		</id>
+
+		<discriminator column="typeCategory" type="string" />
+
+		<property name="description" type="string">
+			<column name="description" length="100">
+				<comment />
+			</column>
+		</property>
+
+		<property name="attribute1" type="string">
+			<column name="attribute1" length="20">
+				<comment />
+			</column>
+		</property>
+
+		<property name="orderBy" type="java.lang.Long">
+			<column name="orderBy">
+			</column>
+		</property>
+
+		<subclass name="com.demo.core.domain.CustomerStatus" discriminator-value="STATUS_CUST" />
+		<subclass name="com.demo.core.domain.SexType" discriminator-value="TYPE_SEX" />
+		<subclass name="com.demo.core.domain.CustomerType" discriminator-value="TYPE_CUST" />
+
+
+	</class>
+</hibernate-mapping>
